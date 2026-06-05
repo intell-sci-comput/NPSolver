@@ -1,0 +1,51 @@
+# @package _global_
+
+data:
+  name: neumann
+  mesh_dir: /mnt/DEV_B/zengbocheng/FVMSolver/data/mesh/corners
+  file_name: train_corner4_mesh[N=100].h5
+  sol_dir: /mnt/DEV_B/zengbocheng/FVMSolver/data/poisson
+  test_files:
+    - test_corner0_sol[N=1x100,zeroGradient,normed].h5
+    - test_corner1_sol[N=10x10,zeroGradient,normed].h5
+    - test_corner2_sol[N=10x10,zeroGradient,normed].h5
+    - test_corner3_sol[N=10x10,zeroGradient,normed].h5
+    - test_corner4_sol[N=10x10,zeroGradient,normed].h5
+  size: 128
+  dim: 2
+  norm_f: true
+  zeroGradient_bc: true
+  random_bc: false
+  apply_bc: false
+
+model:
+  name: ba-transolver
+  space_dim: 2
+  n_layers: 10
+  n_hidden: 256
+  dropout: 0.0
+  n_head: 8
+  mlp_ratio: 1
+  fun_dim: 1
+  bdry_dim: 2
+  out_dim: 1
+  slice_num: [64, 8]
+  ref: 8
+  unified_pos: false
+  max_iter: 40
+  scheme: 4
+  omega: 0.1
+
+params:
+  lr: 0.0005
+  start_epoch: 1
+  num_epochs: 600
+  num_batches_per_epoch: 100
+  batch_size: 8
+  grad_norm: 1.0
+  pct_start: 0.1
+  save_freq: 2
+  print_freq: 2
+  batch_print_freq: 5
+  num_workers: 4
+  save_results: false
