@@ -11,20 +11,20 @@
 
 >**Abstract**: Efficiently solving Poisson equations on complex, irregular domains remains a fundamental challenge in scientific computing, as classical iterative solvers often suffer from prohibitive runtime due to ill-conditioned systems. While neural operators offer a fast alternative, they typically rely on large-scale labeled datasets or struggle with unstable training dynamics when using physics-informed residual losses. We propose \textsc{NPSolver}, a neural Poisson solver trained without solution labels via iterative physics supervision. Instead of relying on fully converged numerical solutions or raw PDE residuals, \textsc{NPSolver} utilizes a small number of preconditioned conjugate gradient (PCG) steps to refine its own predictions, providing a more stable and well-scaled training signal. Theoretical analysis confirms that this iterative supervision serves as a well-conditioned error proxy and that a stop-gradient design is essential for optimization stability. To better capture boundary-driven features under mixed boundary conditions, we further introduce the Boundary-Aware Transolver (\textsc{BA-Transolver}) architecture that explicitly separates interior and boundary tokenization. Extensive evaluations on 2D and 3D irregular geometries demonstrate that \textsc{NPSolver} outperforms both physics-informed and data-driven baselines. Furthermore, a downstream thermal control task highlights the model's capability for conducting efficient and reliable gradient-based boundary control. We will release our codes and data at https://github.com/intell-sci-comput/NPSolver.
 
-## ✨Highlights
+## ✨ Highlights
 ![network architecture](./assets/model.jpg)
 
 - NPSolver, a label-free neural Poisson solver built on BA-Transolver model and trained with an iterative physics supervision objective.
 - BA-Transolver model, which separately tokenizes interior and boundary nodes.
 - Theoretical guarantees for iterative physics supervision.
 
-## Implemented Features
+## ✅ Implemented Features
 
 - 2D on corner-removed square: Dirichlet / Neumann / RandomBC
 - 3D on cube-with-cylindrical-hole: coming soon
 - Control task: coming soon
 
-## Installation
+## 📥 Installation
 
 **1. Clone the repository**
 
@@ -40,7 +40,7 @@ conda activate npsolver
 pip install -r requirements.txt
 ```
 
-## Data Preparation
+## 🗂️ Data Preparation
 
 The datasets and pretrained checkpoints used in our experiments are publicly available on Hugging Face:
 
@@ -49,7 +49,7 @@ The datasets and pretrained checkpoints used in our experiments are publicly ava
 
 Please download the required files and store them in your local workspace. 
 
-## Project Structure and Configuration
+## 🧩 Project Structure and Configuration
 
 The current release mainly includes the 2D implementation of NPSolver. The repository is organized as follows:
 
@@ -86,18 +86,6 @@ Before running the code, please update the directory-related fields in the confi
 - `data.sol_dir`
 - `output.path`
 
-We recommend storing downloaded files in a local layout such as:
-
-```text
-data/
-├── mesh/
-│   └── ...
-├── poisson/
-│   └── ...
-└── checkpoints/
-    └── ...
-```
-
 Then set `data.mesh_dir` and `data.sol_dir` to the corresponding local directories, and set `output.path` to the directory where you want checkpoints, logs, and test outputs to be saved.
 
 This project uses SwanLab to upload training logs to the cloud. If you do not want to use SwanLab, you can comment out the related code in:
@@ -107,7 +95,7 @@ This project uses SwanLab to upload training logs to the cloud. If you do not wa
 
 The project will still save local logs, checkpoints, and test outputs under `output.path` even if SwanLab is disabled.
 
-## Quick start
+## 🚀 Quick start
 
 After configuring the relevant paths in the config files, you can run the 2D experiments from the `npsolver_2d/` directory:
 
@@ -161,7 +149,7 @@ python exp_2d.py exp=dirichlet project.mode=test
 python exp_2d.py exp=dirichlet project.mode=test output.name=ba-transolver_dirichlet
 ```
 
-## Citation
+## 📈 Citation
 
 ```bibtex
 @inproceedings{
