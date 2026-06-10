@@ -1,6 +1,6 @@
 # NPSolver: Neural Poisson Solver with Iterative Physics Supervision
 
-**Official Pytorch Implementation** | KDD 2026
+**Official PyTorch Implementation** | KDD 2026
 
 **Authors:** Bocheng Zeng*, Zhang Rui*, Runze Mao, Mengtao Yan, Xuan Bai, Yang Liu, Zhi X. Chen, Hao Sun.
 
@@ -21,7 +21,7 @@
 ## ✅ Implemented Features
 
 - 2D on corner-removed square: Dirichlet / Neumann / RandomBC
-- 3D on cube-with-cylindrical-hole: coming soon
+- 3D on cube-with-cylindrical-hole
 - Control task: coming soon
 
 ## 📥 Installation
@@ -92,8 +92,8 @@ Then set `data.mesh_dir` and `data.sol_dir` to the corresponding local directori
 
 This project uses SwanLab to upload training logs to the cloud. If you do not want to use SwanLab, you can comment out the related code in:
 
-- `npsolver_2d/exp_2d.py`, such as `swanlab.init(...)`
-- `npsolver_2d/src/trainers/npsolver_trainer.py`, such as `swanlab.log(...)`
+- `predict/exp_2d.py`, such as `swanlab.init(...)`
+- `predict/src/trainers/npsolver_trainer.py`, such as `swanlab.log(...)`
 
 The project will still save local logs, checkpoints, and test outputs under `output.path` even if SwanLab is disabled.
 
