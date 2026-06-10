@@ -1,5 +1,5 @@
 defaults:
-  - exp: dirichlet
+  - exp: cube
   - _self_
 
 project:
@@ -10,8 +10,8 @@ project:
   device: cuda:0
 
 output:
-  name: ${model.name}_0_${now:%Y-%m-%d-%H-%M-%S}  # for train
-  # name: ${model.name}_dirichlet  # for test, set a fixed name to load the model
+  name: ${model.name}_3_${now:%Y-%m-%d-%H-%M-%S}  # for train
+  # name: ${model.name}_3_2026-06-08-10-46-00  # for test, set a fixed name to load the model
   path: /mnt/DEV_B/zengbocheng/NPSolver/${data.name}/${output.name}
 
 hydra:

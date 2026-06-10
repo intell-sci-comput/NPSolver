@@ -51,18 +51,20 @@ Please download the required files and store them in your local workspace.
 
 ## 🧩 Project Structure and Configuration
 
-The current release mainly includes the 2D implementation of NPSolver. The repository is organized as follows:
+The current release includes both 2D and 3D implementations of NPSolver, all located under the `predict/` directory. The repository is organized as follows:
 
 ```text
 NPSolver/
-├── npsolver_2d/
+├── predict/
 │   ├── exp_2d.py
+│   ├── exp_3d.py
 │   ├── configs/
 │   │   ├── config.yaml
 │   │   └── exp/
 │   │       ├── dirichlet.yaml
 │   │       ├── neumann.yaml
-│   │       └── random_bc.yaml
+│   │       ├── random_bc.yaml
+│   │       └── cube.yaml
 │   └── src/
 │       ├── datasets/
 │       ├── fvm_residulers/
@@ -74,10 +76,10 @@ NPSolver/
 └── README.md
 ```
 
-The main entry point is `npsolver_2d/exp_2d.py`. The project uses Hydra for configuration management:
+The main entry points are `predict/exp_2d.py` (for 2D) and `predict/exp_3d.py` (for 3D). The project uses Hydra for configuration management:
 
-- `npsolver_2d/configs/config.yaml` defines the global runtime settings, such as `project.mode`, `project.device`, and `output.path`.
-- `npsolver_2d/configs/exp/*.yaml` defines experiment-specific settings, including dataset paths, boundary-condition types, model hyperparameters, and training parameters, which are the default settings used to reproduce the experiments reported in the paper.
+- `predict/configs/config.yaml` defines the global runtime settings, such as `project.mode`, `project.device`, and `output.path`.
+- `predict/configs/exp/*.yaml` defines experiment-specific settings, including dataset paths, boundary-condition types, model hyperparameters, and training parameters, which are the default settings used to reproduce the experiments reported in the paper.
 - The active experiment config is selected through the `defaults` field in `config.yaml`.
 
 Before running the code, please update the directory-related fields in the config files to match your local environment, especially:
@@ -95,30 +97,29 @@ This project uses SwanLab to upload training logs to the cloud. If you do not wa
 
 The project will still save local logs, checkpoints, and test outputs under `output.path` even if SwanLab is disabled.
 
-## 🚀 Quick start
+## 🚀 Quick Start
 
-After configuring the relevant paths in the config files, you can run the 2D experiments from the `npsolver_2d/` directory:
+After configuring the relevant paths in the config files, you can run the 2D experiments from the `predict/` directory:
 
 ```shell
-cd npsolver_2d
+cd predict
 ```
-
-To launch the Dirichlet experiment:
+### 2D Experiments
 
 ```shell
+# Dirichlet
 python exp_2d.py exp=dirichlet
-```
 
-To launch the Neumann experiment:
-
-```shell
+# Neumann
 python exp_2d.py exp=neumann
-```
 
-To launch the RandomBC experiment:
+# Random BC
+python exp_2d.py exp=random_bc
+```
+### 3D Experiments
 
 ```shell
-python exp_2d.py exp=random_bc
+python exp_3d.py exp=cube
 ```
 
 The training or evaluation behavior is controlled by `project.mode` in `configs/config.yaml`:

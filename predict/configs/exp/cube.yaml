@@ -1,0 +1,47 @@
+# @package _global_
+
+data:
+  name: cube
+  mesh_dir: /mnt/DEV_B/zengbocheng/FVMSolver/data/mesh/cylinder_holes
+  file_name: train_48_cylinder_hole_mesh[N=40].h5
+  sol_dir: /mnt/DEV_B/zengbocheng/FVMSolver/data/poisson
+  test_files:
+    - test_48_cylinder_holes[N=10x10].h5
+  dim: 3
+  norm_fourier: max
+  norm_f: true
+  apply_bc: true
+
+model:
+  name: ba-transolver
+  space_dim: 3
+  n_layers: 10
+  n_hidden: 300
+  dropout: 0.0
+  n_head: 8
+  mlp_ratio: 1
+  fun_dim: 1
+  bdry_dim: 5
+  out_dim: 1
+  slice_num: [64, 16]
+  ref: 8
+  unified_pos: false
+  max_iter: 40
+  scheme: 4
+  omega: 0.1
+
+params:
+  lr: 0.0005
+  start_epoch: 1
+  num_epochs: 400
+  num_batches_per_epoch: 100
+  batch_size: 1
+  grad_accum: 8
+  grad_norm: 1.0
+  pct_start: 0.1
+  save_freq: 2
+  print_freq: 2
+  batch_print_freq: 5
+  num_workers: 4
+  save_results: false
+
