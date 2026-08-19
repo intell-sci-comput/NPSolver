@@ -1,6 +1,6 @@
 import torch
 
-from .possion_solver import PossionSolver
+from .poisson_solver import PoissonSolver
 
 
 def init_solver(mesh_info, nu, device, dtype, boundaryP=False):
@@ -10,7 +10,7 @@ def init_solver(mesh_info, nu, device, dtype, boundaryP=False):
         mesh_info.boundaryP = None
     else:
         boundaryP = mesh_info.boundaryP.to(dtype)
-    solver = PossionSolver(
+    solver = PoissonSolver(
             nu=nu_t,
             bouNu=bouNu,
             volume=mesh_info.volume.to(dtype),

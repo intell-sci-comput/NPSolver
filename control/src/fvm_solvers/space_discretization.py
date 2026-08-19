@@ -1,5 +1,4 @@
 import torch
-from torch_scatter import scatter_add
 
 from src.datasets.data import PatchType
 

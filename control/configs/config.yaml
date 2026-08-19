@@ -1,0 +1,19 @@
+defaults:
+  - exp: control
+  - _self_
+
+project:
+  seed: 1234
+  name: NPSolver
+  mode: train  # train | test | control
+  continous_train: false
+  device: cuda:0
+
+output:
+  name: ${model.name}_4_${now:%Y-%m-%d-%H-%M-%S}  # for train
+  # name: ${model.name}_4_2026-01-24-21-45-12  # for test, set a fixed name to load the model
+  path: /mnt/DEV_B/zengbocheng/NPSolver/${data.name}/${output.name}
+
+hydra:
+  run:
+    dir: ${output.path}
